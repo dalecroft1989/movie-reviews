@@ -1,14 +1,16 @@
 [
   {
     "name": "Heat",
+    "poster": "heat_poster.jpg",
     "releaseDate": "1995",
     "actors": "Al Pacino, Robert De Niro, Val Kilmer",
-    "rating": "5"
+    "rating": "5/5"
   },
   {
     "name": "Training Day",
+    "poster": "trainingday_poster.jpg",
     "releaseDate": "2001",
     "actors": "Denzel Washington, Ethan Hawke, Scott Glenn",
-    "rating": "4"
+    "rating": "5/5"
   }
 ]
