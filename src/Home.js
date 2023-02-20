@@ -22,17 +22,20 @@ function NavBar() {
     );
 }
 
-function Reviews({reviews}) {
+function Reviews({reviews, removeReview}) {
     return (
         <div>
             {reviews.map((review) => (
                 <div>
                     <h2>{review.name}</h2>
-                    <img src={"./" + review.poster} alt={review.name}/>
-                    <p>Release Date: {review.releaseDate}</p>
-                    <p>Actors: {review.actors}</p>
-                    <p>Rating: {review.rating}</p>
-                </div>
+                    <img src={"./" + review.poster} alt={review.name} style={{width: "250px", height: "350px"}}/>
+                    <ul>
+                        <li>Release Date: {review.releaseDate}</li>
+                        <li>Actors: {review.actors}</li>
+                        <li>Rating: {review.rating}</li>
+                    </ul>
+                    <button onClick={() => removeReview(review)}>Remove Movie</button>
+                    </div>
             ))}
         </div>
     );
@@ -48,6 +51,10 @@ function Home() {
             .catch(error => console.log(error.message));
     }, []);
 
+    const removeReview = (review) => {
+        const newReviews = reviews.filter((r) => r !== review);
+        setReviews(newReviews);
+    }
 
     if (reviews === null) {
         return <p>Loading...</p>
@@ -56,7 +63,7 @@ function Home() {
             <>
                 <NavBar/>
                 <Header/>
-                <Reviews reviews={reviews}
+                <Reviews reviews={reviews} removeReview={removeReview}
                 />
             </>
         );
