@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
+import {Link, Routes, Route} from "react-router-dom";
+import {AddReview} from "./Add";
 
 
 function Header() {
@@ -61,10 +62,10 @@ function Home() {
     }else {
         return (
             <>
-                <NavBar/>
-                <Header/>
-                <Reviews reviews={reviews} removeReview={removeReview}
-                />
+                <Routes>
+                    <Route path="/" element={<Reviews reviews={reviews} removeReview = {removeReview}/>} />
+                    <Route path="/Add" element={<AddReview reviews={reviews} setReviews = {setReviews}/>} />
+                </Routes>
             </>
         );
     }
