@@ -16,7 +16,7 @@ function NavBar() {
             <nav>
                 <ul>
                     <p><Link to="/">Home</Link></p>
-                    <p><Link to="/addreview">Add Review</Link></p>
+                    <p><Link to="/add">Add Review</Link></p>
                 </ul>
             </nav>
         </header>
@@ -46,7 +46,7 @@ function Home() {
     const [reviews, setReviews] = React.useState(null);
 
     useEffect(() => {
-        fetch("./reviews.json")
+        fetch("/movies")
             .then(response => response.json())
             .then(setReviews)
             .catch(error => console.log(error.message));

@@ -15,7 +15,7 @@ function NavBar() {
             <nav>
                 <ul>
                     <p><Link to="/">Home</Link></p>
-                    <p><Link to="/addreview">Add Review</Link></p>
+                    <p><Link to="/add">Add Review</Link></p>
                 </ul>
             </nav>
         </header>
@@ -49,8 +49,6 @@ export function AddReview({reviews, setReviews}) {
 
     return (
         <form onSubmit={submit}>
-            <NavBar/>
-            <Header/>
             <p><label>Movie Name: <input
             ref={movieName}
             type="text"/>
