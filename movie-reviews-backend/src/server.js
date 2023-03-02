@@ -1,7 +1,10 @@
 import express from 'express';
 import {MongoClient} from 'mongodb';
+
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
 
 app.get('/movies', async (req, res) => {
     //res.json(movieReviews);
@@ -17,7 +20,7 @@ app.get('/movies', async (req, res) => {
 
 });
 
-app.post('/add', async(req, res) => {
+app.post('/addReview', async(req, res) => {
     const client = new MongoClient('mongodb://127.0.0.1:27017');
     await client.connect();
 

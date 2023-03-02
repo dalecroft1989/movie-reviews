@@ -1,25 +1,26 @@
 import React, {useEffect} from 'react';
-import {Link, Routes, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import {AddReview} from "./Add";
-
+import {Nav, Navbar} from "react-bootstrap";
 
 function Header() {
     return (
-        <header>
+        <header className="text-center">
             <h1>Movie Reviews</h1>
         </header>
     );
 }
-function NavBar() {
+
+function NavBars() {
     return (
-        <header>
-            <nav>
-                <ul>
-                    <p><Link to="/">Home</Link></p>
-                    <p><Link to="/add">Add Review</Link></p>
-                </ul>
-            </nav>
-        </header>
+        <Navbar>
+            <Nav.Item>
+                <Nav.Link href="/">Movie Reviews</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/add">Add A Review</Nav.Link>
+            </Nav.Item>
+        </Navbar>
     );
 }
 
@@ -62,6 +63,8 @@ function Home() {
     }else {
         return (
             <>
+                <Header />
+                <NavBars />
                 <Routes>
                     <Route path="/" element={<Reviews reviews={reviews} removeReview = {removeReview}/>} />
                     <Route path="/Add" element={<AddReview reviews={reviews} setReviews = {setReviews}/>} />
