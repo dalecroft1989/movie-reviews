@@ -1,45 +1,36 @@
 import express from 'express';
+import {MongoClient} from 'mongodb';
 const app = express();
 app.use(express.json());
 
-let movieReviews =
-    [
-        {
-            "name": "Heat",
-            "poster": "heat.jpg",
-            "releaseDate": "1995",
-            "actors": "Al Pacino, Robert De Niro, Val Kilmer",
-            "rating": "5/5"
-        },
-        {
-            "name": "Training Day",
-            "poster": "trainingday.jpg",
-            "releaseDate": "2001",
-            "actors": "Denzel Washington, Ethan Hawke, Scott Glenn",
-            "rating": "5/5"
-        },
-        {
-            "name": "Dazed and Confused",
-            "poster": "dazed.jpg",
-            "releaseDate": "1993",
-            "actors": "Jason London, Wiley Wiggins, Joey Lauren Adams",
-            "rating": "5/5"
-        }
-    ];
+app.get('/movies', async (req, res) => {
+    //res.json(movieReviews);
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
 
-app.get('/movies', (req, res) => {
+    const db = client.db('movie-reviews');
+
+    const movieReviews = await db.collection('movie').find().toArray();
+    console.log(movieReviews);
     res.json(movieReviews);
+
+
 });
 
-app.post('/updateReviews', (req, res) => {
-    movieReviews.push(
-        {"name":req.body.name,
-        "poster":req.body.poster,
-        "releaseDate":req.body.releaseDate,
-        "actors":req.body.actors,
-        "rating":req.body.rating} );
-    console.log(req.body);
-    res.send(req.body);
+app.post('/add', async(req, res) => {
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('movie-reviews');
+
+    const insertReview = await db.collection('movie').insertOne(
+        {'name':req.body.name,
+            poster:req.body.poster,
+            releaseDate:req.body.releaseDate,
+            actors:req.body.actors,
+            rating:req.body.rating});
+    console.log(insertReview);
+    res.redirect('/');
 });
 
 app.listen(8000, () => {
