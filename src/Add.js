@@ -29,26 +29,26 @@ export function AddReview({reviews, setReviews}) {
     const movieActors = useRef()
     const movieRating = useRef()
 
-    const submit = (event) => {
-        event.preventDefault();
-        const movieData = {};
-
-        movieData.name = movieName.current.value;
-        movieData.poster = "dazed.jpg";
-        movieData.releaseDate = movieReleaseDate.current.value;
-        movieData.actors = movieActors.current.value;
-        movieData.rating = movieRating.current.value;
-
-        const allReviews = []
-        reviews.forEach(review => {
-            allReviews.push(review);
-        })
-        allReviews.push(movieData);
-        setReviews(allReviews);
-    }
+    // const submit = (event) => {
+    //     event.preventDefault();
+    //     const movieData = {};
+    //
+    //     movieData.name = movieName.current.value;
+    //     movieData.poster = "dazed.jpg";
+    //     movieData.releaseDate = movieReleaseDate.current.value;
+    //     movieData.actors = movieActors.current.value;
+    //     movieData.rating = movieRating.current.value;
+    //
+    //     const allReviews = []
+    //     reviews.forEach(review => {
+    //         allReviews.push(review);
+    //     })
+    //     allReviews.push(movieData);
+    //     setReviews(allReviews);
+    // }
 
     return (
-        <form onSubmit={submit}>
+        <form method="post" action="/updateReviews">
             <p><label>Movie Name: <input
             ref={movieName}
             type="text"/>
@@ -65,7 +65,8 @@ export function AddReview({reviews, setReviews}) {
             ref={movieRating}
             type="text"/>
             </label></p>
-            <button>ADD</button>
+            <input type={"submit"} value={"Add"} />
+            {/*<button>ADD</button>*/}
         </form>
     )
 }
