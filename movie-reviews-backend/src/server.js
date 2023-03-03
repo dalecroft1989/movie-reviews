@@ -1,13 +1,14 @@
 import express from 'express';
 import {MongoClient} from 'mongodb';
+import * as path from "path";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+app.use(express.static('posters'));
 
 app.get('/movies', async (req, res) => {
-    //res.json(movieReviews);
     const client = new MongoClient('mongodb://127.0.0.1:27017');
     await client.connect();
 

@@ -21,6 +21,8 @@ export function AddReview({reviews, setReviews}) {
                     >
                     <option value={"sleep.jpg"}>MOVIE</option>
                     <option value={"exorcist.jpg"}>Exorcist</option>
+                    <option value={"sleep.jpg"}>Sleep Away Camp</option>
+                    <option value={"midsommar.jpg"}>Midsommar</option>
                 </select></label></p>
                 <p><label>Release Date: <input
                     name={"releaseDate"}
